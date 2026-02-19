@@ -1,0 +1,6 @@
+﻿machine_id,name,location,last_maintenance_date,maintenance_interval_days,status
+1,Press 101,Plant 1 - Section A,01-12-2025,30,Operational
+2,Press 102,Plant 1 - Section A,15-09-2025,30,Needs Maintenance
+3,Conveyor Line 3,Plant 2 - Packaging Area,20-12-2025,7,Operational
+4,Pump X7,Plant 1 - Basement,01-06-2025,90,Under Maintenance
+5,Generator G1,Plant 2 - Power Room,01-07-2025,180,Operational

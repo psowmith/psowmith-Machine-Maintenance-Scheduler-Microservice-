@@ -1,0 +1,42 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+  machine-service:
+    build: ./machine-service
+    ports:
+      - "4001:4001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/machines
+    depends_on:
+      - mongo
+    restart: always
+
+  maintenance-service:
+    build: ./maintenance-service
+    ports:
+      - "4002:4002"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/maintenance
+    depends_on:
+      - mongo
+      - machine-service
+    restart: always
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "4000:4000"
+    depends_on:
+      - machine-service
+      - maintenance-service
+    restart: always
+
+volumes:
+  mongo-data:
